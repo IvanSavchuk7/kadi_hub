@@ -75,3 +75,35 @@ document.addEventListener("DOMContentLoaded", function () {
         observer.observe(animationBlock);
     }
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    const items = document.querySelectorAll(".department-item");
+
+    items.forEach(item => {
+        item.addEventListener("mouseenter", () => {
+            // Remove active from all
+            items.forEach(el => el.classList.remove("active"));
+            // Add to current
+            item.classList.add("active");
+        });
+    });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    const departmentItems = document.querySelectorAll(".department-item");
+    const innerBlocks = document.querySelectorAll(".wrapper .inner");
+
+    departmentItems.forEach(item => {
+        item.addEventListener("mouseenter", () => {
+            const target = item.querySelector(".inner")?.dataset.department || item.dataset.department;
+
+            innerBlocks.forEach(block => {
+                if (block.dataset.department === target) {
+                    block.classList.add("active");
+                } else {
+                    block.classList.remove("active");
+                }
+            });
+        });
+    });
+});

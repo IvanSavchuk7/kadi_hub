@@ -204,15 +204,18 @@ section.about .numbers-wrapper > .numbers-item {
 .numbers-wrapper > .numbers-item clue {
     font-size: 1.2rem;
 }
-section.about .offer {
-    padding: 1rem 1rem 1rem 2rem;
+section.about .offer,
+section.departments .offer{
+    padding: 0 0 2px 0;
+    width: fit-content;
     display: flex;
     gap: 10px;
     align-items: center;
-}
-section.about .offer > div {
-    line-height: 19px;
     border-bottom: 1px solid #181818;
+}
+section.about .offer > div,
+section.departments .offer > div {
+    line-height: 19px;
 }
 section.red {
     background: #D80D14;
@@ -279,7 +282,136 @@ section.red .circle.animate {
         left: calc(100% - 1.5rem); /* container width - circle width */
     }
 }
-
+section.departments {
+    padding: 2.7rem 3.7rem 3.7rem 2rem;
+}
+section.departments > .title span {
+    font-size: 2.5rem;
+}
+section.departments > .title > span:last-child {
+    padding-left: 3rem;
+    display: block;
+}
+section.departments .content {
+    display: flex;
+    padding-top: 4rem;
+    position: relative;
+}
+section.departments .content > .left {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+}
+section.departments .department-item {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+section.departments .department-item > .num {
+    padding-top: 1.5rem;
+    font-family: Inter, sans-serif;
+    font-size: .8rem;
+}
+section.departments .department-item > div:last-child .inner {
+    position: relative;
+}
+section.departments .left .department-item.active .inner > div:first-child {
+    color: #F7F6F6;
+    z-index: 111;
+    position: relative;
+}
+section.departments .left .department-item .abs {
+    z-index: 10;
+    width: 100%;
+    position: absolute;
+    padding: 4rem 4rem 4rem 4rem;
+    background: #181818;
+    border-radius: 50%;
+    top: -2rem;
+    left: -1rem;
+    opacity: 0;
+    transform: scale(0.95);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    pointer-events: none;
+}
+section.departments .department-item.active .abs {
+    display: block;
+    opacity: 1;
+    transform: scale(1);
+    cursor: pointer;
+}
+section.departments .right {
+    flex: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-right: 3rem;
+}
+section.departments .right .wrapper {
+    width: fit-content;
+    padding: 2.5rem 1.5rem 1rem 1.5rem;
+    border-radius: 6px;
+    border: 1.5px solid rgba(21, 21, 21, 0.39);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.10) 0%, rgba(255, 255, 255, 0.06) 99.99%, rgba(255, 255, 255, 0.00) 100%);
+    backdrop-filter: blur(6.5px);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    position: relative;
+}
+section.departments .right .wrapper .offer-arrow {
+    width: 3rem;
+    height: 3rem;
+    margin-left: calc(100% - 3rem);
+}
+section.departments .right .wrapper .inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1s ease;
+}
+section.departments .right .wrapper .inner.active {
+    position: relative;
+    opacity: 1;
+    visibility: visible;
+    z-index: 1;
+}
+section.departments .right .bottom {
+    display: flex;
+    flex-direction: column;
+    gap: .8rem;
+}
+section.departments .right .inner[data-department="management"] .title {
+    font-size: 1.5rem;
+}
+section.departments .right img:first-child {
+    max-height: 15rem;
+    aspect-ratio:  4 / 3;
+    border-radius: 6px;
+}
+section.departments .right .title {
+    font-size: 1.6rem;
+}
+section.departments .right .description {
+    font-size: .7rem;
+}
+section.departments .offer {
+    position: absolute;
+    right: 0;
+    bottom: -4.5rem;
+    gap: 2rem;
+}
+section.departments .offer > div {
+    white-space: nowrap;
+}
+section.departments .left .num.mobile,
+section.departments .content .left .offer.mobile {
+    display: none;
+}
 @media screen and (min-width: 1441px) and (max-width: 3840px) {
     html {
         font-size: 34px;
@@ -320,8 +452,13 @@ section.red .circle.animate {
     html {
         font-size: 18px;
     }
-    section.about > .title, section.about > .title * {
+    section.about > .title, section.about > .title *,
+    section.departments > .title > span {
         font-size: 2.9rem;
+    }
+    section.departments > .title > span {
+        font-size: 2.6rem;
+        padding-left: 0 !important;
     }
 }
 @media only screen and (max-width: 1100px) {
@@ -347,6 +484,14 @@ section.red .circle.animate {
     }
     section.red .line-animation {
         width: 75%;
+    }
+    section.departments > .title > span {
+        font-size: 2.4rem;
+    }
+    section.departments .offer img,
+    section.about .offer img {
+        width: 1rem;
+        height: 1rem;
     }
 }
 @media only screen and (max-width: 767px) {
@@ -377,8 +522,8 @@ section.red .circle.animate {
         background-size: 100%;
         padding: 1.4rem 1.9rem 1.9rem 1rem;
     }
-    section.about, section.red {
-        padding: 1.4rem 1.4rem 2.8rem 1rem;
+    section.about, section.red, section.departments {
+        padding: 1.4rem 1rem 2.8rem 1rem;
     }
     section.hero .nav-wrapper {
         position: relative;
@@ -539,6 +684,65 @@ section.red .circle.animate {
     section.red .line-animation > .left {
         left: -1rem;
     }
+    section.departments {
+        padding-bottom: 8rem;
+    }
+    section.departments .content {
+        flex-direction: column-reverse;
+        gap: 4.5rem;
+        padding-top: 3rem;
+    }
+    section.departments .content .right .offer {
+        display: none;
+    }
+    section.departments .content > .left {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        position: relative;
+    }
+    section.departments .content > .left .num:not(.mobile) {
+        display: none;
+    }
+    section.departments .content > .left .inner {
+        display: flex;
+        gap: 5px;
+        align-items: flex-end;
+    }
+    section.departments .content > .left .inner > div:first-child {
+        font-weight: 300;
+        font-size: .9rem;
+    }
+    section.departments .left .department-item.active .inner > div:nth-child(2) {
+        color: #F7F6F6;
+        z-index: 100;
+        position: relative;
+        font-weight: 400;
+    }
+    section.departments .content > .left .num.mobile {
+        display: block;
+    }
+    section.departments .content .left .offer.mobile {
+        display: flex;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: -5.5rem;
+    }
+    section.departments .right {
+        padding-right: 0;
+    }
+    section.departments .left .department-item .abs {
+        padding: 4rem;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    section.departments .right .title {
+        padding-top: 1rem;
+    }
+    section.departments > .title > span {
+        font-size: 2rem;
+    }
 }
 @media only screen and (max-width: 480px) {
     html {
@@ -566,6 +770,9 @@ section.red .circle.animate {
     }
     section.red .line-animation {
         margin-top: 4rem;
+    }
+    section.departments > .title > span {
+        font-size: 1.5rem;
     }
 }
 @media only screen and (max-width: 420px) {
