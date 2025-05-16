@@ -109,14 +109,84 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-  const items = document.querySelectorAll(".department-item");
+    const items = document.querySelectorAll(".department-item");
 
-  items.forEach(item => {
-    item.addEventListener("click", function () {
-      // Remove active class from all
-      items.forEach(i => i.classList.remove("active"));
-      // Add to tapped one
-      this.classList.add("active");
+    items.forEach(item => {
+        item.addEventListener("click", function () {
+            // Remove active class from all
+            items.forEach(i => i.classList.remove("active"));
+            // Add to tapped one
+            this.classList.add("active");
+        });
     });
-  });
 });
+
+var swiper = new Swiper(".feedback-swiper", {
+    slidesPerView: 1.25,
+    spaceBetween: -100, // 👈 Negative spacing
+    centeredSlides: true,
+    allowTouchMove: false,
+    loop: true,
+    on: {
+        init(swiperInstance) {
+            updatePlayerButtons(swiperInstance);
+            updateNavState(swiperInstance);
+        },
+        slideChangeTransitionEnd(swiperInstance) {
+            updatePlayerButtons(swiperInstance);
+            updateNavState(swiperInstance);
+        }
+    },
+    navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+    },
+    breakpoints: {
+        600: {
+            slidesPerView: 2,
+            spaceBetween: -75,
+            centeredSlides: true,
+        },
+        768: {
+            slidesPerView: 2,
+            spaceBetween: -75,
+            centeredSlides: true,
+        },
+        1100: {
+            slidesPerView: 3,
+            spaceBetween: -100,
+            centeredSlides: true,
+        },
+    }
+});
+
+function updatePlayerButtons(swiperInstance) {
+    const slides = swiperInstance.slides;
+
+    slides.forEach(slide => {
+        const img = slide.querySelector('.player-button img');
+        if (!img) return;
+
+        if (slide.classList.contains('swiper-slide-active')) {
+            img.src = 'assets/images/player-button.svg';
+        } else {
+            img.src = 'assets/images/player-button-grey.svg';
+        }
+    });
+}
+
+function updateNavState(swiperInstance) {
+    const prev = document.querySelector('.swiper-button-prev');
+    const next = document.querySelector('.swiper-button-next');
+
+    prev.classList.remove('disabled');
+    next.classList.remove('disabled');
+
+    if (swiperInstance.realIndex === 0) {
+        prev.classList.add('disabled');
+    }
+
+    if (swiperInstance.realIndex === swiperInstance.slides.length - swiperInstance.loopedSlides - 1) {
+        next.classList.add('disabled');
+    }
+}
