@@ -421,7 +421,8 @@ section.feedback {
     background: #181818;
     padding: 4rem 4rem 7rem 0;
 }
-section.feedback > .title {
+section.feedback > .title,
+section.benefits > .title{
     font-size: 5rem;
     color: #F7F6F6;
     text-align: center;
@@ -590,7 +591,294 @@ section.feedback .offer > div {
     opacity: 0.3;
     filter: grayscale(100%);
 }
+section.benefits {
+    background: #181818;
+    padding: 2.7rem 4rem 2rem 4rem;
+}
+section.benefits .title {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+section.benefits .title img {
+    height: 5rem;
+}
+section.benefits .title .line {
+    height: 1px;
+    width: 8rem;
+    background: #FFFFFF;
+}
+section.benefits .title > div {
+    display: flex;
+    gap: 2rem;
+    color: #FFFFFF;
+    align-items: center;
+}
+section.benefits .content {
+    padding-left: 3rem;
+}
+section.benefits .content .top {
+    border: 1px solid #FFFFFF;
+    border-left: none;
+    width: 100%;
+    height: 40vh;
+    max-height: 400px;
+    position: relative;
+    margin-bottom: 40vh;
+}
+section.benefits .top > div .inner {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+section.benefits .top div.circle {
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    background: #FFFFFF;
+}
+section.benefits .top div.text {
+    color: #FFFFFF;
+}
+section.benefits div.dot-1 .inner,
+section.benefits div.dot-2 .inner,
+section.benefits div.dot-3 .inner {
+    top: 0;
+    transform: translateY(calc(-100% + .75rem));
+}
+section.benefits .top div.dot-1 .inner {
+    left: 15%;
+}
+section.benefits div.dot-2 .inner {
+    left: 45%;
+}
+section.benefits .div.dot-3 .inner {
+    left: 75%;
+}
+section.benefits .top > .abs-arrow {
+    position: absolute;
+    top: 100%;
+    left: -1rem;
+    width: 2rem;
+    height: 40vh;
+    max-height: 300px;
+}
+section.benefits .top > .abs-icon {
+    position: absolute;
+    width: 6rem;
+    height: 6rem;
+    left: -3rem;
+    top: -3rem;
+}
+section.benefits div.dot-4 .inner,
+section.benefits div.dot-5 .inner,
+section.benefits div.dot-6 .inner{
+    bottom: 0;
+    transform: translateY(.75rem);
+}
+section.benefits div.dot-4 .inner {
+    left: 20%;
+}
+section.benefits div.dot-5 .inner {
+    left: 45%;
+}
+section.benefits div.dot-6 .inner {
+    left: 80%;
+}
+section.benefits .text {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
 
+section.benefits .text.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.form-group {
+  margin-bottom: 25px;
+}
+section.form {
+    background: #181818;
+    padding: 0 0 7.4rem 0;
+}
+section.form .title,
+section.form .content {
+    padding-left: 4rem;
+    padding-right: 4rem;
+}
+section.form .title {
+    display: flex;
+    flex-direction: column;
+}
+section.form .title > div {
+    color: #F7F6F6;
+    width: 100%;
+    font-size: 4.5rem;
+}
+section.form .title > div:last-child {
+    text-align: right;
+}
+section.form .offer {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    padding: 3rem 0 1.5rem 0;
+}
+section.form .offer img {
+    width: 7rem;
+    height: 7rem;
+}
+section.form .offer div {
+    font-size: 3.5rem;
+    color: #D80D14;
+}
+section.form .form-wrapper {
+    width: 70%;
+
+    margin: 0 0 12rem 8rem;
+    background-color: #2a2929;
+    padding: 4rem 6rem 5rem 6rem;
+    border-radius: 10px;
+    border: 1px solid grey;
+    position: relative;
+}
+section.form .form-wrapper .form-title {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 3rem;
+    text-align: center;
+    color: #F7F6F6;
+    padding-bottom: 1rem;
+}
+section.form input[type="text"],
+section.form textarea {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #F7F6F6;
+  color: #F7F6F6;
+  font-size: 1rem;
+  padding: 10px 0;
+  outline: none;
+}
+
+section.form textarea {
+  border: 1px solid #F7F6F6;
+  border-radius: 8px;
+  padding: 15px;
+  min-height: 350px;
+  resize: vertical;
+  margin-top: 20px;
+}
+
+section.form .note {
+  font-size: 0.9rem;
+  color: #ccc;
+  margin-top: 15px;
+}
+
+section.form .submit-btn {
+  display: block;
+  width: 100%;
+  margin-top: 40px;
+  background: #fff;
+  color: #000;
+  padding: 16px;
+  font-weight: 600;
+  text-align: center;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+    font-size: 1rem;
+  transition: background 0.3s ease;
+}
+section.form .submit-btn:hover {
+  background: #e6e6e6;
+}
+section.form .bottom-content > .email {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+}
+section.form .bottom-content > .email > .text {
+    color: #F7F6F6;
+    width: 60%;
+    text-align: left;
+    font-size: 1.5rem;
+    line-height: 127%;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #F7F6F6;
+}
+section.form .cross {
+    height: 28rem;
+    width: 26rem;
+    position: absolute;
+    left: -20rem;
+    transform: translateX(-50%);
+    bottom: -20rem;
+    animation: spin 60s linear infinite, glow 3s ease-in-out infinite;
+    transform-origin: center center;
+}
+section.form .bottom-content > .contacts {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 1.5rem;
+    width: 100%;
+    padding-top: 5rem;
+}
+section.form .bottom-content > .contacts > * {
+    width: 60%;
+}
+section.form .contacts .contacts-title span {
+    font-size: 2.5rem;
+    color: #F7F6F6;
+}
+section.form .contacts .contacts-title span:last-child {
+    color: #D80D14;
+}
+section.form .contacts .contacts-inner {
+    display: flex;
+    gap: 4rem;
+}
+section.form .contacts-inner > a {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: .75rem;
+}
+section.form .contacts-inner > a div {
+    display: flex;
+    gap: .5rem;
+    color: #F7F6F6;
+}
+section.form .contacts-inner > a > div:last-child {
+    opacity: .7;
+    margin-left: 5px;
+}
+section.form .contacts-inner > a img {
+    width: 1.2rem;
+    height: 1.2rem;
+}
+
+
+@keyframes spin {
+    0%   { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes glow {
+    0%, 100% {
+        filter: brightness(.9);
+        scale: 1;
+    }
+    50% {
+        filter: brightness(1.2);
+        scale: 1.1;
+    }
+}
 @media screen and (min-width: 1441px) and (max-width: 3840px) {
     html {
         font-size: 34px;
@@ -602,11 +890,29 @@ section.feedback .offer > div {
     section.about, section.red {
         padding: 5vw 10vw 7.5vw 10vw;
     }
+    section.form .form-wrapper {
+        padding: 3rem 4.5rem 3rem 4.5rem;
+    }
+    section.form input[type="text"] {
+        padding: 35px 0;
+    }
+    section.form textarea {
+        padding: 35px 20px;
+    }
+    .form-group {
+        margin-bottom: 50px;
+    }
+    section.form .title, section.form .content {
+        padding-left: 6rem;
+        padding-right: 4rem;
+    }
+    section.form .form-wrapper {
 
+    }
 }
 @media only screen  and (max-width: 2559px) {
     html {
-        font-size: 28px;
+        font-size: 27px;
     }
     .bottom > .offer-button > img {
         width: 8rem;
@@ -638,6 +944,38 @@ section.feedback .offer > div {
     section.departments > .title > span {
         font-size: 2.6rem;
         padding-left: 0 !important;
+    }
+    section.benefits .content .top,
+    section.benefits .top .abs-arrow {
+        max-height: 200px;
+    }
+    section.benefits div.dot-1 .inner {
+        left: 10%;
+    }
+    section.benefits div.dot-2 .inner {
+        left: 35%;
+    }
+    section.benefits div.dot-3 .inner {
+        left: 65%;
+    }
+    section.benefits div.dot-4 .inner {
+        left: 15%;
+    }
+    section.benefits div.dot-5 .inner {
+        left: 40%;
+    }
+    section.benefits div.dot-6 .inner {
+        left: 70%;
+    }
+    section.form .offer {
+        justify-content: center;
+
+    }
+    section.form .offer div {
+        font-size: 3rem;
+    }
+    section.form .form-wrapper {
+        width: 80%;
     }
 }
 @media only screen and (max-width: 1100px) {
@@ -680,6 +1018,30 @@ section.feedback .offer > div {
     section.feedback > .bottom .text > span {
         font-size: .7rem;
     }
+    section.benefits div.dot-5 .inner {
+        left: 40%;
+    }
+    section.benefits .top div.dot-6 .inner {
+        left: 75%;
+    }
+     section.benefits .top div.text {
+         font-size: .85rem;
+     }
+    section.form .cross {
+        left: -17rem;
+    }
+    section.form .form-wrapper {
+        margin: 0 auto 12rem auto;
+        width: 100%;
+        max-width: 760px;
+    }
+    section.form .bottom-content > .email > .text,
+    section.form .bottom-content > .contacts > * {
+        width: 65%;
+    }
+    section.form .form-wrapper .form-title {
+        font-size: 2.5rem;
+    }
 }
 @media only screen and (max-width: 767px) {
     html {
@@ -707,8 +1069,120 @@ section.feedback .offer > div {
     section.feedback .content {
         padding-left: 0;
     }
+    section.benefits .content {
+        display: flex;
+        padding: 0 20% 0 20%;
+        justify-content: center;
+    }
+    section.benefits .content .top {
+        border: none;
+        height: auto;
+        max-height: initial;
+        width: 100%;
+        margin-bottom: 140px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+    }
+    section.benefits .top > div {
+        min-height: 120px;
+        height: 100%;
+        position: relative;
+        border-left: none;
+    }
+    section.benefits .top .dot-1,
+    section.benefits .top .dot-2 {
+        width: 80%;
+        border-top: 1px solid #FFFFFF;
+    }
+    section.benefits .top .dot-1 {
+        border-right: 1px solid #FFFFFF;
+    }
+    section.benefits .top .dot-2 {
+        border-left: 1px solid #FFFFFF;
+        border-bottom: 1px solid #FFFFFF;
+    }
+    section.benefits .top .dot-3 {
+        width: 100%;
+        border-right: 1px solid #FFFFFF;
+        border-bottom: 1px solid #FFFFFF;
+    }
+    section.benefits .top .dot-4 {
+        width: 100%;
+        border-left: 1px solid #FFFFFF;
+        border-bottom: 1px solid #FFFFFF;
+    }
+    section.benefits .top .dot-5 {
+        width: 100%;
+        border-right: 1px solid #FFFFFF;
+        border-bottom: 1px solid #FFFFFF;
+    }
+    section.benefits .top .dot-6 {
+        width: 50%;
+        border-left: 1px solid #FFFFFF;
+        border-bottom: 1px solid #FFFFFF;
+        align-self: flex-start;
+    }
+    section.benefits .top > .abs-arrow {
+        left: 50%;
+        top: calc(100% - 1.5px);
+        transform: translateX(-50%);
+        max-height: 120px;
+    }
+    section.benefits .top > div .inner {
+        height: fit-content;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        bottom: -.75rem !important;
+        top: initial;
+    }
+    section.benefits .top > div.dot-6 .inner {
+        left: 100% !important;
+    }
+    section.benefits .top > .abs-icon {
+        left: 3rem;
+        z-index: 10;
+    }
+    section.benefits .top div.text {
+        font-size: 1.5rem;
+        text-align: center;
+    }
+    section.form .bottom-content > .email > .text {
+        width: 50%;
+    }
+    section.form .bottom-content > .contacts > * {
+        width: 100%;
+        padding: 1rem 4rem 1rem 4rem;
+    }
 }
-
+@media only screen and (min-width: 601px) and (max-width: 767px) {
+    section.form .bottom-content > .contacts {
+        margin-top: 16rem;
+    }
+    section.form .contacts .contacts-title span {
+        font-size: 4rem;
+    }
+    section.form .contacts-inner > a * {
+        font-size: 2rem;
+    }
+    section.form .cross {
+        height: 40rem;
+        width: 40rem;
+        position: absolute;
+        left: -19rem;
+        bottom: -36rem;
+    }
+    section.form textarea {
+        min-height: 250px;
+    }
+    section.form input[type="text"], section.form textarea {
+        font-size: 2rem;
+    }
+    section.form .note,
+    section.form .submit-btn {
+        font-size: 1.75rem;
+    }
+}
 @media only screen and (max-width: 600px) {
     html {
         font-size: 16px;
@@ -721,6 +1195,9 @@ section.feedback .offer > div {
     }
     section.about, section.red, section.departments {
         padding: 1.4rem 1rem 2.8rem 1rem;
+    }
+    section.benefits {
+        padding: 3rem 1.5rem 2.8rem 1.5rem;
     }
     section.hero .nav-wrapper {
         position: relative;
@@ -992,6 +1469,58 @@ section.feedback .offer > div {
         left: 114%;
         transform: translateX(-100%);
     }
+    section.benefits .content {
+        padding: 0;
+    }
+    section.benefits .top div.text {
+        font-size: 1.25rem;
+    }
+    section.benefits .title {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: .5rem;
+    }
+    section.benefits .title img {
+        height: 4.5rem;
+    }
+    section.benefits .title > div {
+        width: 100%;
+        justify-content: flex-end;
+        padding-right: 1rem;
+    }
+    section.benefits .title .line {
+        width: 6rem;
+    }
+    section.form .title > div {
+        font-size: 3rem;
+    }
+    section.form .offer div {
+        font-size: 2rem;
+    }
+    section.form .offer img {
+        width: 4rem;
+        height: 4rem;
+    }
+    section.form .title, section.form .content {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    section.form .form-wrapper {
+        padding: 1.5rem 3rem 2rem 3rem;
+    }
+    section.form .cross {
+        left: -14rem;
+        bottom: -25rem;
+    }
+    section.form .bottom-content > .contacts {
+        padding-top: 7.5rem;
+    }
+    section.form textarea {
+        min-height: 200px;
+    }
+    section.form .submit-btn {
+        margin-top: 20px;
+    }
 }
 @media only screen and (max-width: 480px) {
     html {
@@ -1023,6 +1552,15 @@ section.feedback .offer > div {
     section.departments > .title > span {
         font-size: 1.5rem;
     }
+    section.benefits .top > div {
+            min-height: 100px;
+    }
+    section.benefits .top > div.dot-4 .inner {
+        left: 40% !important;
+    }
+    section.benefits .top > div.dot-3 .inner {
+         left: 55% !important;
+    }
 }
 @media only screen and (max-width: 420px) {
     section.about .text p {
@@ -1035,6 +1573,23 @@ section.feedback .offer > div {
     .numbers-wrapper > .numbers-item .number, .numbers-wrapper > .numbers-item .number * {
         font-size: 2rem;
     }
+    section.benefits .title img {
+        height: 4rem;
+    }
+    section.form .cross {
+        left: -11rem;
+        height: 24rem;
+        width: 22rem;
+    }
+    section.form .bottom-content > .email > .text {
+        font-size: 1rem;
+    }
+    section.form .bottom-content > .contacts > * {
+        padding: 1rem;
+    }
+    section.form .title > div {
+        font-size: 2.5rem;}
+    section.form .contacts .contacts-inner {gap: 1.5rem;}
 }
 
 @media only screen and (max-width: 380px) {

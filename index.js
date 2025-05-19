@@ -121,6 +121,33 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+document.addEventListener("DOMContentLoaded", function () {
+    const section = document.querySelector('section.benefits');
+    const texts = section.querySelectorAll('.text');
+    let triggered = false;
+
+    function onScroll() {
+      const sectionTop = section.getBoundingClientRect().top;
+      const windowHeight = window.innerHeight;
+
+      if (!triggered && sectionTop < windowHeight - 100) {
+        triggered = true;
+
+        texts.forEach((el, i) => {
+          setTimeout(() => {
+            el.classList.add('visible');
+          }, i * 1000); // 1s delay between each
+        });
+
+        // Optional: remove listener after trigger
+        window.removeEventListener('scroll', onScroll);
+      }
+    }
+
+    window.addEventListener('scroll', onScroll);
+    onScroll(); // run once in case section is already visible
+  });
+
 var swiper = new Swiper(".feedback-swiper", {
     slidesPerView: 1.25,
     spaceBetween: -100, // 👈 Negative spacing
@@ -175,18 +202,5 @@ function updatePlayerButtons(swiperInstance) {
     });
 }
 
-function updateNavState(swiperInstance) {
-    const prev = document.querySelector('.swiper-button-prev');
-    const next = document.querySelector('.swiper-button-next');
 
-    prev.classList.remove('disabled');
-    next.classList.remove('disabled');
 
-    if (swiperInstance.realIndex === 0) {
-        prev.classList.add('disabled');
-    }
-
-    if (swiperInstance.realIndex === swiperInstance.slides.length - swiperInstance.loopedSlides - 1) {
-        next.classList.add('disabled');
-    }
-}
