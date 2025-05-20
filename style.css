@@ -692,7 +692,7 @@ section.benefits div.dot-6 .inner {
 section.benefits .text {
   opacity: 0;
   transform: translateY(10px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transition: opacity 1s ease, transform 1s ease;
 }
 
 section.benefits .text.visible {
@@ -700,7 +700,8 @@ section.benefits .text.visible {
   transform: translateY(0);
 }
 .form-group {
-  margin-bottom: 20px;
+    border-radius: 0 !important;
+    margin-bottom: 20px;
 }
 section.form {
     background: #181818;
