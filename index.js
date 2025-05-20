@@ -1,4 +1,70 @@
 document.addEventListener("DOMContentLoaded", function () {
+    const sectionElements = document.querySelectorAll(`
+  .fade-effect,
+  .fade-effect-strong
+`);
+    // Observer options
+    const observerOptions = {
+        threshold: 0.5
+    };
+
+    const fadeInOnScroll = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('fade-in');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    sectionElements.forEach(element => {
+        fadeInOnScroll.observe(element);
+    });
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+    const burger = document.getElementById("burger");
+    document.querySelectorAll(".nav-mobile a").forEach(link => {
+        link.addEventListener("click", () => {
+            burger.checked = false;
+        });
+    });
+});
+
+window.addEventListener("scroll", () => {
+    const nav = document.querySelector(".nav-wrapper");
+    const triggerY = 700; // Adjust this value (in px)
+
+    if (window.scrollY > triggerY) {
+        nav.classList.add("scrolled");
+    } else {
+        nav.classList.remove("scrolled");
+    }
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+    const burgerCheckbox = document.getElementById("burger");
+    const nav = document.querySelector(".nav-wrapper");
+
+    burgerCheckbox.addEventListener("change", () => {
+        if (burgerCheckbox.checked) {
+            nav.classList.remove("scrolled");
+            document.body.classList.add("no-scroll");
+        } else {
+            document.body.classList.remove("no-scroll");
+        }
+    });
+
+    // Optional: close nav on link click and allow scrolling again
+    document.querySelectorAll(".nav-mobile a").forEach(link => {
+        link.addEventListener("click", () => {
+            burgerCheckbox.checked = false;
+            document.body.classList.remove("no-scroll");
+        });
+    });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
     const checkbox = document.getElementById("burger");
     const nav = document.querySelector("nav.nav-mobile");
 
@@ -53,6 +119,38 @@ document.addEventListener("DOMContentLoaded", function () {
 
     window.addEventListener("scroll", animateCounters);
 });
+
+new TypeIt('#typed-block', {
+    speed: 40,
+    waitUntilVisible: true,
+    afterComplete: function (instance) {
+        instance.destroy();
+    }
+}).go();
+
+new TypeIt('#typed-block-2', {
+    speed: 50,
+    waitUntilVisible: true,
+    afterComplete: function (instance) {
+        instance.destroy();
+    }
+}).go();
+
+new TypeIt('#typed-block-3', {
+    speed: 150,
+    waitUntilVisible: true,
+    afterComplete: function (instance) {
+        instance.destroy();
+    }
+}).go();
+
+new TypeIt('#typed-block-4', {
+    speed: 50,
+    waitUntilVisible: true,
+    afterComplete: function (instance) {
+        instance.destroy();
+    }
+}).go();
 
 document.addEventListener("DOMContentLoaded", function () {
     const observer = new IntersectionObserver(

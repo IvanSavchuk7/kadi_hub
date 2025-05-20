@@ -10,29 +10,32 @@
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
   <script src="index.js" defer></script>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
   <title>KA&DI HUB | Production Center</title>
 </head>
 <body>
   <main>
-    <section class="hero">
+    <section class="hero" id="hero">
       <div class="top">
         <div class="nav-wrapper">
           <div class="logo"></div>
-          <label class="burger" for="burger">
+
+          <label class="burger">
             <input type="checkbox" id="burger">
             <span></span>
             <span></span>
             <span></span>
           </label>
+
+          <!-- ✅ Must be sibling of checkbox -->
           <nav class="nav-mobile">
-            <div class="burger-wrapper">
-            </div>
+            <div class="burger-wrapper"></div>
             <ul>
-              <li><a href="" class="fw-700">ABOUT US</a></li>
-              <li><a href="" class="fw-700">OUR CASES</a></li>
-              <li><a href="" class="fw-700">TEAM</a></li>
-              <li><a href="" class="fw-700">CONTACTS</a></li>
+              <li><a href="#about" class="fw-700">ABOUT US</a></li>
+              <li><a href="#cases" class="fw-700">OUR CASES</a></li>
+              <li><a href="#team" class="fw-700">TEAM</a></li>
+              <li><a href="#contacts" class="fw-700">CONTACTS</a></li>
             </ul>
           </nav>
         </div>
@@ -45,21 +48,23 @@
         </div>
       </div>
       <div class="bottom">
-        <a href="" class="offer-button">
+        <a href="#form" class="offer-button">
           <div class="text fw-300">Fill out the <span class="fw-700">production</span> <br>application</div>
           <img src="assets/images/hero-button.svg" alt="button image">
         </a>
       </div>
     </section>
-    <section class="about">
-      <div class="title uppercase fw-500">
-        <span class="fw-600">KA&DI HUB</span> — is a team of <br>professionals who love what <br>they do.
+    <section class="about" id="about">
+      <div class="title uppercase fw-500" id="typed-block">
+        <span class="fw-700">KA&DI HUB</span> — is a team of <br>
+        professionals who love what <br>
+        they do.
       </div>
       <div class="text-wrapper">
         <div class="empty"></div>
         <div class="text">
-          <p class="fw-300">We work together with one goal — to <br>create meaningful online education <br>projects with media personalities.</p>
-          <p class="fw-300">Each of our courses helps <br>people grow and improve their <br>lives. They inspire, teach, and
+          <p class="fw-300 fade-effect">We work together with one goal — to <br>create meaningful online education <br>projects with media personalities.</p>
+          <p class="fw-300 fade-effect-strong">Each of our courses helps <br>people grow and improve their <br>lives. They inspire, teach, and
             <br>bring real results.</p>
         </div>
       </div>
@@ -85,12 +90,12 @@
           <div class="clue fw-300">In sales in 2023</div>
         </div>
       </div>
-      <a href="" class="offer">
+      <a href="#form" class="offer">
         <div>Launch the project with us</div> <img src="assets/images/arrow.svg" alt="">
       </a>
     </section>
     <section class="red">
-      <div class="title uppercase fw-800">
+      <div class="title uppercase fw-800 fade-effect">
         We take on the entire project launch <br>cycle from idea to implementation.
       </div>
       <div class="line-animation" id="line-animation">
@@ -100,7 +105,7 @@
         <div class="right uppercase fw-300">implementation</div>
       </div>
     </section>
-    <section class="departments">
+    <section class="departments fade-effect" id="team">
       <div class="title">
         <span class="fw-500 uppercase">This is an exciting process,</span>
         <span class="fw-500 uppercase">involving the following departments:</span>
@@ -127,7 +132,7 @@
             <div class="num">05</div>
             <div><div class="inner fw-600"><div class="num mobile">05</div><div>Technical <br> Department</div><div class="abs"></div></div></div>
           </div>
-            <a href="" class="offer mobile">
+            <a href="#form" class="offer mobile fade-effect">
                 <div>I want to start with you</div> <img src="assets/images/arrow.svg" alt="">
             </a>
         </div>
@@ -169,14 +174,14 @@
               </div>
             </div>
             <img src="assets/images/red-arrow.svg" alt="red arrow" class="offer-arrow">
-            <a href="" class="offer">
+            <a href="#form" class="offer">
               <div>I want to start with you</div> <img src="assets/images/arrow.svg" alt="">
             </a>
           </div>
         </div>
       </div>
     </section>
-    <section class="feedback">
+    <section class="feedback fade-effect" id="cases">
       <div class="title fw-700 uppercase">
         Feedback
       </div>
@@ -241,17 +246,17 @@
       <div class="bottom">
         <div class="line">
           <hr>
-          <a href="" class="offer">
+          <a href="#form" class="offer fade-effect">
             <div>Become our partner</div> <img src="assets/images/arrow-white.svg" alt="">
           </a>
         </div>
         <div class="text fw-300">
-          <span>We analyze every project to make it better.</span>
-          <span>We use data and feedback to improve with each</span>
+          <span class="fade-effect">We analyze every project to make it better.</span>
+          <span class="fade-effect">We use data and feedback to improve with each</span>
           <span>launch.</span>
         </div>
         <div class="text mobile fw-300">
-          <span>We analyze every project to make it better. We use data and feedback to improve with each launch.</span>
+          <span class="fade-effect">We analyze every project to make it better. We use data and feedback to improve with each launch.</span>
         </div>
       </div>
     </section>
@@ -304,15 +309,15 @@
     </section>
     <section class="form">
       <div class="title fw-700 uppercase">
-        <div class="uppercase fw-700">READY TO LAUNCH</div>
-        <div class="uppercase fw-700">YOUR PRODUCT?</div>
+        <div class="uppercase fw-700" id="typed-block-2">READY TO LAUNCH</div>
+        <div class="uppercase fw-700" id="typed-block-3">YOUR PRODUCT?</div>
       </div>
       <div class="content">
-        <div class="offer">
+        <div class="offer fade-effect">
           <img src="assets/images/red-arrow.svg" alt="">
           <div class="text uppercase fw-700">Give it the chance to grow</div>
         </div>
-        <div class="form-wrapper">
+        <div class="form-wrapper fade-effect-strong" id="form">
           <img src="assets/images/red-cross.svg" alt="" class="cross">
           <div class="form-title uppercase fw-400">Fill out the form</div>
           <form>
@@ -333,17 +338,17 @@
           </form>
         </div>
       </div>
-      <div class="bottom-content">
+      <div class="bottom-content" id="contacts">
         <div class="email uppercase fw-300">
-          <div class="text">
+          <div class="text fade-effect">
             You can also write to us on <br>Telegram or by email.
           </div>
         </div>
         <div class="contacts">
-          <div class="contacts-title">
+          <div class="contacts-title" id="typed-block-4">
             <span class="uppercase fw-700">OUR </span> <span class="uppercase fw-700">CONTACTS:</span>
           </div>
-          <div class="contacts-inner" >
+          <div class="contacts-inner fade-effect" >
             <a class="tg" href="https://t.me/kadihubtelegram" target="_blank">
               <div>
                 <img src="assets/images/red-star.svg" alt="">
@@ -363,8 +368,28 @@
       </div>
     </section>
   </main>
+  <footer>
+    <a href="#form" class="offer">
+      <div>Contact Us</div>
+    </a>
+    <div class="links">
+      <nav>
+        <a href="#hero">Home</a>
+        <a href="#about">About us</a>
+        <a href="#cases">Our cases</a>
+        <a href="#team">Team</a>
+        <a href="#contacts">Contacts</a>
+      </nav>
+      <div class="scroll-up">
+        <a href="#hero" class="offer">
+          <div>Scroll Up</div> <img src="assets/images/arrow-top.svg" alt="arrow top">
+        </a>
+      </div>
+    </div>
+    <img src="assets/images/kadi-logo.svg" alt="">
+  </footer>
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
-
+  <script src="https://cdn.jsdelivr.net/npm/typeit@8.7.1/dist/index.umd.js"></script>
 </body>
 </html>

@@ -9,6 +9,7 @@
 html {
     font-size: 20px;
     background: #F7F6F6;
+    scroll-behavior: smooth;
 }
 * {
     box-sizing: border-box;
@@ -206,7 +207,8 @@ section.about .numbers-wrapper > .numbers-item {
 }
 section.about .offer,
 section.departments .offer,
-section.feedback .offer {
+section.feedback .offer,
+footer .offer{
     padding: 0 0 2px 0;
     width: fit-content;
     display: flex;
@@ -216,7 +218,8 @@ section.feedback .offer {
 }
 section.about .offer > div,
 section.departments .offer > div,
-section.feedback .offer > div {
+section.feedback .offer > div,
+footer .offer > div {
     line-height: 1.5rem;
     white-space: nowrap;
 }
@@ -645,16 +648,15 @@ section.benefits .top div.text {
 section.benefits div.dot-1 .inner,
 section.benefits div.dot-2 .inner,
 section.benefits div.dot-3 .inner {
-    top: 0;
     transform: translateY(calc(-100% + .75rem));
 }
-section.benefits .top div.dot-1 .inner {
+section.benefits div.dot-1 .inner {
     left: 15%;
 }
 section.benefits div.dot-2 .inner {
     left: 45%;
 }
-section.benefits .div.dot-3 .inner {
+section.benefits div.dot-3 .inner {
     left: 75%;
 }
 section.benefits .top > .abs-arrow {
@@ -698,12 +700,13 @@ section.benefits .text.visible {
   transform: translateY(0);
 }
 .form-group {
-  margin-bottom: 25px;
+  margin-bottom: 20px;
 }
 section.form {
     background: #181818;
     padding: 0 0 7.4rem 0;
 }
+
 section.form .title,
 section.form .content {
     padding-left: 4rem;
@@ -736,11 +739,10 @@ section.form .offer div {
     color: #D80D14;
 }
 section.form .form-wrapper {
-    width: 70%;
-
+    width: 65%;
     margin: 0 0 12rem 8rem;
     background-color: #2a2929;
-    padding: 4rem 6rem 5rem 6rem;
+    padding: 3rem 5rem 4rem 5rem;
     border-radius: 10px;
     border: 1px solid grey;
     position: relative;
@@ -768,7 +770,7 @@ section.form textarea {
   border: 1px solid #F7F6F6;
   border-radius: 8px;
   padding: 15px;
-  min-height: 350px;
+  min-height: 250px;
   resize: vertical;
   margin-top: 20px;
 }
@@ -862,8 +864,6 @@ section.form .contacts-inner > a img {
     width: 1.2rem;
     height: 1.2rem;
 }
-
-
 @keyframes spin {
     0%   { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
@@ -878,6 +878,77 @@ section.form .contacts-inner > a img {
         filter: brightness(1.2);
         scale: 1.1;
     }
+}
+
+footer {
+    background: #D80D14;
+    padding: 3rem 2rem 1.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+footer .offer {
+    border-bottom: 1px solid #F7F6F6;
+}
+footer .offer > div {
+    color: #F7F6F6;
+    font-size: 2rem;
+    padding: 0 5rem .3rem 0;
+}
+footer .links .scroll-up .offer {
+    gap: 1rem;
+}
+footer .links .scroll-up .offer > div {
+    font-size: 1.1rem;
+    padding: 0;
+}
+footer .links {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+footer .links > nav {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+footer .links > nav a {
+    color: #F7F6F6;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+footer .links > nav a:first-child {
+    color: #181818;
+}
+footer > img {
+    width: 100%;
+    height: auto;
+}
+.offer-button img {
+    transition: transform 0.4s ease;
+    will-change: transform;
+}
+
+.offer-button:hover img {
+    transform: scale(1.1) rotate(-135deg);
+}
+body.no-scroll {
+    overflow: hidden;
+    height: 100vh;
+}
+.fade-effect {
+    opacity: 0;
+    transition: opacity 1.2s ease-in-out;
+}
+.fade-effect-strong {
+    opacity: 0;
+    transition: opacity 2.2s ease-in-out;
+}
+.fade-in {
+    opacity: 1;
 }
 @media screen and (min-width: 1441px) and (max-width: 3840px) {
     html {
@@ -900,7 +971,7 @@ section.form .contacts-inner > a img {
         padding: 35px 20px;
     }
     .form-group {
-        margin-bottom: 50px;
+        margin-bottom: 40px;
     }
     section.form .title, section.form .content {
         padding-left: 6rem;
@@ -1007,7 +1078,7 @@ section.form .contacts-inner > a img {
     }
     section.departments .offer img,
     section.about .offer img,
-    section.feedback .offer {
+    section.feedback .offer img {
         width: 1rem;
         height: 1rem;
     }
@@ -1191,7 +1262,7 @@ section.form .contacts-inner > a img {
         background-image: url("assets/images/hero-bg-mobile.webp");
         gap: 40vh;
         background-size: 100%;
-        padding: 1.4rem 1.9rem 1.9rem 1rem;
+        padding: 4.5rem 1.9rem 1.9rem 1rem;
     }
     section.about, section.red, section.departments {
         padding: 1.4rem 1rem 2.8rem 1rem;
@@ -1199,8 +1270,16 @@ section.form .contacts-inner > a img {
     section.benefits {
         padding: 3rem 1.5rem 2.8rem 1.5rem;
     }
-    section.hero .nav-wrapper {
-        position: relative;
+    .nav-wrapper {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1001;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 2rem;
     }
     nav.nav-mobile {
         position: fixed;
@@ -1208,8 +1287,8 @@ section.form .contacts-inner > a img {
         left: 0;
         height: 100vh;
         width: 100vw;
-        backdrop-filter: blur(20px);
-        background: rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(15px);
+        background: rgba(0, 0, 0, 0.6);
         display: flex;
         justify-content: center;
         align-items: center;
@@ -1217,9 +1296,14 @@ section.form .contacts-inner > a img {
         transition: transform 0.3s ease-in-out;
         z-index: 999;
     }
-    #burger:checked ~ nav.nav-mobile {
-        transform: translateY(0) !important;
+    .nav-wrapper.scrolled {
+        backdrop-filter: blur(15px);
+        background: rgba(0, 0, 0, 0.6);
     }
+    .burger input:checked ~ nav.nav-mobile {
+        transform: translateY(0);
+    }
+
     .nav-wrapper > nav ul {
         flex-direction: column;
         width: 100%;
@@ -1323,7 +1407,7 @@ section.form .contacts-inner > a img {
     }
     section.about .text p {
         line-height: 1.3rem;
-        font-size: .9rem;
+        font-size: 1rem;
     }
     section.about .player-wrapper {
         min-height: 0;
@@ -1521,6 +1605,16 @@ section.form .contacts-inner > a img {
     section.form .submit-btn {
         margin-top: 20px;
     }
+    footer {
+        padding: 3rem 1rem 1rem 1rem;
+        gap: 2.5rem;
+    }
+    footer .links > nav {
+        gap: 1.25rem;
+    }
+    footer .links > nav a {
+        font-size: 1rem;
+    }
 }
 @media only screen and (max-width: 480px) {
     html {
@@ -1561,11 +1655,15 @@ section.form .contacts-inner > a img {
     section.benefits .top > div.dot-3 .inner {
          left: 55% !important;
     }
+    section.about .text-wrapper {
+        grid-template-columns: 0.5fr 1fr;
+        padding-right: 1.5rem;
+    }
 }
 @media only screen and (max-width: 420px) {
     section.about .text p {
         line-height: 1.2rem;
-        font-size: .8rem;
+        font-size: .95rem;
     }
     section.about {
         background-position: 130% 95%;
