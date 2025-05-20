@@ -403,7 +403,7 @@ section.departments .right .title {
     font-size: 1.6rem;
 }
 section.departments .right .description {
-    font-size: .7rem;
+    font-size: .8rem;
 }
 section.departments .offer {
     position: absolute;
@@ -1659,6 +1659,9 @@ body.no-scroll {
     section.about .text-wrapper {
         grid-template-columns: 0.5fr 1fr;
         padding-right: 1.5rem;
+    }
+    section.departments .right .description {
+        font-size: .9rem;
     }
 }
 @media only screen and (max-width: 420px) {
