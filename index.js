@@ -1,9 +1,10 @@
 document.addEventListener("DOMContentLoaded", function () {
     const sectionElements = document.querySelectorAll(`
   .fade-effect,
-  .fade-effect-strong
+  .fade-effect-strong,
+  .fade-effect-strong2,
+  .fade-effect-strong3
 `);
-    // Observer options
     const observerOptions = {
         threshold: 0.5
     };
@@ -21,59 +22,38 @@ document.addEventListener("DOMContentLoaded", function () {
         fadeInOnScroll.observe(element);
     });
 });
-
-document.addEventListener("DOMContentLoaded", () => {
-    const burger = document.getElementById("burger");
-    document.querySelectorAll(".nav-mobile a").forEach(link => {
-        link.addEventListener("click", () => {
-            burger.checked = false;
-        });
-    });
-});
-
-window.addEventListener("scroll", () => {
-    const nav = document.querySelector(".nav-wrapper");
-    const triggerY = 700; // Adjust this value (in px)
-
-    if (window.scrollY > triggerY) {
-        nav.classList.add("scrolled");
-    } else {
-        nav.classList.remove("scrolled");
-    }
-});
-
 document.addEventListener("DOMContentLoaded", () => {
     const burgerCheckbox = document.getElementById("burger");
-    const nav = document.querySelector(".nav-wrapper");
+    const nav = document.querySelector("nav.nav-mobile");
+    const navWrapper = document.querySelector(".nav-wrapper");
+
+    window.addEventListener("scroll", () => {
+        const triggerY = 650;
+        if (window.scrollY > triggerY && !burgerCheckbox.checked) {
+            navWrapper.classList.add("scrolled");
+        } else {
+            navWrapper.classList.remove("scrolled");
+        }
+    });
 
     burgerCheckbox.addEventListener("change", () => {
         if (burgerCheckbox.checked) {
-            nav.classList.remove("scrolled");
+            nav.style.transform = "translateY(0)";
             document.body.classList.add("no-scroll");
+            navWrapper.classList.remove("scrolled");
         } else {
+            nav.style.transform = "translateY(-100%)";
             document.body.classList.remove("no-scroll");
         }
     });
 
-    // Optional: close nav on link click and allow scrolling again
+    // Close menu when a nav link is clicked
     document.querySelectorAll(".nav-mobile a").forEach(link => {
         link.addEventListener("click", () => {
             burgerCheckbox.checked = false;
+            nav.style.transform = "translateY(-100%)";
             document.body.classList.remove("no-scroll");
         });
-    });
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-    const checkbox = document.getElementById("burger");
-    const nav = document.querySelector("nav.nav-mobile");
-
-    checkbox.addEventListener("change", function () {
-        if (checkbox.checked) {
-            nav.style.transform = "translateY(0)";
-        } else {
-            nav.style.transform = "translateY(-100%)";
-        }
     });
 });
 
@@ -94,13 +74,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 const isDollar = rawText.includes('$');
                 const isPlus = rawText.includes('+');
 
-                // Get numeric value from text (remove non-digit characters)
                 const target = parseInt(rawText.replace(/\D/g, ''), 10);
                 let current = 0;
-                const duration = 3000;
+                const duration = 5000;
                 const increment = Math.ceil(target / (duration / 20));
 
-                const formatter = new Intl.NumberFormat('de-DE'); // Use dots like 1.000.000
+                const formatter = new Intl.NumberFormat('de-DE');
 
                 const update = setInterval(() => {
                     current += increment;
@@ -120,38 +99,6 @@ document.addEventListener("DOMContentLoaded", function () {
     window.addEventListener("scroll", animateCounters);
 });
 
-new TypeIt('#typed-block', {
-    speed: 40,
-    waitUntilVisible: true,
-    afterComplete: function (instance) {
-        instance.destroy();
-    }
-}).go();
-
-new TypeIt('#typed-block-2', {
-    speed: 50,
-    waitUntilVisible: true,
-    afterComplete: function (instance) {
-        instance.destroy();
-    }
-}).go();
-
-new TypeIt('#typed-block-3', {
-    speed: 150,
-    waitUntilVisible: true,
-    afterComplete: function (instance) {
-        instance.destroy();
-    }
-}).go();
-
-new TypeIt('#typed-block-4', {
-    speed: 50,
-    waitUntilVisible: true,
-    afterComplete: function (instance) {
-        instance.destroy();
-    }
-}).go();
-
 document.addEventListener("DOMContentLoaded", function () {
     const observer = new IntersectionObserver(
         (entries) => {
@@ -159,7 +106,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (entry.isIntersecting) {
                     const circle = entry.target.querySelector(".circle");
                     circle.classList.add("animate");
-                    observer.unobserve(entry.target); // only once
+                    observer.unobserve(entry.target);
                 }
             });
         },
@@ -220,7 +167,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-    const section = document.querySelector('section.benefits');
+    const section = document.querySelector('section.benefits .top');
     const texts = section.querySelectorAll('.text');
     let triggered = false;
 
@@ -234,21 +181,109 @@ document.addEventListener("DOMContentLoaded", function () {
         texts.forEach((el, i) => {
           setTimeout(() => {
             el.classList.add('visible');
-          }, i * 1000); // 1s delay between each
+          }, i * 1250);
         });
 
-        // Optional: remove listener after trigger
         window.removeEventListener('scroll', onScroll);
       }
     }
 
     window.addEventListener('scroll', onScroll);
-    onScroll(); // run once in case section is already visible
+    onScroll();
   });
+
+function updatePlayerButtons(swiperInstance) {
+    const slides = swiperInstance.slides;
+
+    slides.forEach(slide => {
+        const img = slide.querySelector('.player-button img');
+        if (!img) return;
+
+        if (slide.classList.contains('swiper-slide-active')) {
+            img.src = 'assets/images/player-button.svg';
+        } else {
+            img.src = 'assets/images/player-button-grey.svg';
+        }
+    });
+}
+
+function updateNavState(swiperInstance) {
+    const prev = document.querySelector('.swiper-button-prev');
+    const next = document.querySelector('.swiper-button-next');
+
+    prev.classList.remove('disabled');
+    next.classList.remove('disabled');
+
+    if (swiperInstance.realIndex === 0) {
+        prev.classList.add('disabled');
+    }
+
+    if (swiperInstance.realIndex === swiperInstance.slides.length - swiperInstance.loopedSlides - 1) {
+        next.classList.add('disabled');
+    }
+}
+
+function disableScroll() {
+    const scrollY = window.scrollY || window.pageYOffset;
+
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.left = '0';
+    document.body.style.right = '0';
+    document.body.style.overflow = 'hidden';
+    document.body.style.paddingRight = `${scrollbarWidth}px`;
+}
+
+function enableScroll() {
+    const scrollY = document.body.style.top;
+
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.left = '';
+    document.body.style.right = '';
+    document.body.style.overflow = '';
+    document.body.style.paddingRight = '';
+
+    window.scrollTo(0, parseInt(scrollY || '0') * -1);
+}
+
+new TypeIt('#typed-block', {
+    speed: 40,
+    waitUntilVisible: true,
+    afterComplete: function (instance) {
+        instance.destroy();
+    }
+}).go();
+
+new TypeIt('#typed-block-2', {
+    speed: 50,
+    waitUntilVisible: true,
+    afterComplete: function (instance) {
+        instance.destroy();
+    }
+}).go();
+
+new TypeIt('#typed-block-3', {
+    speed: 150,
+    waitUntilVisible: true,
+    afterComplete: function (instance) {
+        instance.destroy();
+    }
+}).go();
+
+new TypeIt('#typed-block-4', {
+    speed: 50,
+    waitUntilVisible: true,
+    afterComplete: function (instance) {
+        instance.destroy();
+    }
+}).go();
 
 var swiper = new Swiper(".feedback-swiper", {
     slidesPerView: 1.25,
-    spaceBetween: -100, // 👈 Negative spacing
+    spaceBetween: -100,
     centeredSlides: true,
     allowTouchMove: false,
     loop: true,
@@ -285,20 +320,6 @@ var swiper = new Swiper(".feedback-swiper", {
     }
 });
 
-function updatePlayerButtons(swiperInstance) {
-    const slides = swiperInstance.slides;
-
-    slides.forEach(slide => {
-        const img = slide.querySelector('.player-button img');
-        if (!img) return;
-
-        if (slide.classList.contains('swiper-slide-active')) {
-            img.src = 'assets/images/player-button.svg';
-        } else {
-            img.src = 'assets/images/player-button-grey.svg';
-        }
-    });
-}
 
 
 
