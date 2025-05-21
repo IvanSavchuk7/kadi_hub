@@ -1678,7 +1678,8 @@ body.no-scroll {
     section.departments .right .description {
         font-size: .8rem;
     }
-    section.departments .right .description br {
+    section.departments .right .description br,
+    section.form .bottom-content > .email > .text br{
         display: none;
     }
 }
