@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const navWrapper = document.querySelector(".nav-wrapper");
 
     window.addEventListener("scroll", () => {
-        const triggerY = 650;
+        const triggerY = 550;
         if (window.scrollY > triggerY && !burgerCheckbox.checked) {
             navWrapper.classList.add("scrolled");
         } else {
