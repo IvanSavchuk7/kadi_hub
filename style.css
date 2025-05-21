@@ -627,7 +627,7 @@ section.benefits .content .top {
     height: 40vh;
     max-height: 400px;
     position: relative;
-    margin-bottom: 40vh;
+    margin-bottom: 400px;
 }
 section.benefits .top > div .inner {
     position: absolute;
