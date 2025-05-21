@@ -1678,6 +1678,9 @@ body.no-scroll {
     section.departments .right .description {
         font-size: .8rem;
     }
+    section.departments .right .description br {
+        display: none;
+    }
 }
 @media only screen and (max-width: 420px) {
     section.about .text p {
