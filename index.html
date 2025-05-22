@@ -482,19 +482,38 @@
     }
 
     function addMouseInteraction() {
-      // add mouse control
-      var mouse = Matter.Mouse.create(section);
-      var mouseConstraint = Matter.MouseConstraint.create(solver, {
-        mouse: mouse,
-        constraint: {
-          stiffness: 0.2 } });
+      function addMouseInteraction() {
+        const mouse = Matter.Mouse.create(section);
 
-      mouse.element.removeEventListener("mousewheel", mouse.mousewheel);
-      mouse.element.removeEventListener("DOMMouseScroll", mouse.mousewheel);
+        const mouseConstraint = Matter.MouseConstraint.create(solver, {
+          mouse: mouse,
+          constraint: {
+            stiffness: 0.2
+          }
+        });
 
-      Matter.World.add(solver.world, mouseConstraint);
+        // 👇 Enable scroll unless drag is happening
+        let isDragging = false;
 
-      return mouseConstraint;
+        Matter.Events.on(mouseConstraint, 'startdrag', () => {
+          isDragging = true;
+        });
+
+        Matter.Events.on(mouseConstraint, 'enddrag', () => {
+          isDragging = false;
+        });
+
+        section.addEventListener('touchmove', function (e) {
+          if (isDragging) {
+            e.preventDefault(); // Only prevent scroll if dragging
+          }
+        }, { passive: false });
+
+        Matter.World.add(solver.world, mouseConstraint);
+
+        return mouseConstraint;
+      }
+
     }
 
     function resize() {
