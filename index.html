@@ -22,7 +22,7 @@
 
     section.dragndrop {
       width: 100vw;
-      height: 90vh;
+      height: 80vh;
       position: relative;
       margin-top: 50px;
       overflow: hidden;
@@ -482,38 +482,19 @@
     }
 
     function addMouseInteraction() {
-      function addMouseInteraction() {
-        const mouse = Matter.Mouse.create(section);
+      // add mouse control
+      var mouse = Matter.Mouse.create(section);
+      var mouseConstraint = Matter.MouseConstraint.create(solver, {
+        mouse: mouse,
+        constraint: {
+          stiffness: 0.2 } });
 
-        const mouseConstraint = Matter.MouseConstraint.create(solver, {
-          mouse: mouse,
-          constraint: {
-            stiffness: 0.2
-          }
-        });
+      mouse.element.removeEventListener("mousewheel", mouse.mousewheel);
+      mouse.element.removeEventListener("DOMMouseScroll", mouse.mousewheel);
 
-        // 👇 Enable scroll unless drag is happening
-        let isDragging = false;
+      Matter.World.add(solver.world, mouseConstraint);
 
-        Matter.Events.on(mouseConstraint, 'startdrag', () => {
-          isDragging = true;
-        });
-
-        Matter.Events.on(mouseConstraint, 'enddrag', () => {
-          isDragging = false;
-        });
-
-        section.addEventListener('touchmove', function (e) {
-          if (isDragging) {
-            e.preventDefault(); // Only prevent scroll if dragging
-          }
-        }, { passive: false });
-
-        Matter.World.add(solver.world, mouseConstraint);
-
-        return mouseConstraint;
-      }
-
+      return mouseConstraint;
     }
 
     function resize() {
@@ -610,7 +591,7 @@
           });
 
 // ✅ Add random initial rotation (5–30 degrees)
-          const angleDeg = [5, -6, 7, -8, 9][Math.floor(Math.random() * 5)];
+          const angleDeg = [3, -4, -5, -6, 5][Math.floor(Math.random() * 5)];
           const angleRad = angleDeg * (Math.PI / 180);
           Matter.Body.rotate(body, angleRad);
 
