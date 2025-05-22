@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
   .fade-effect-strong3
 `);
     const observerOptions = {
-        threshold: 0.5
+        threshold: 1
     };
 
     const fadeInOnScroll = new IntersectionObserver((entries, observer) => {

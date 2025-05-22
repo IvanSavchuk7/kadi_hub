@@ -12,7 +12,35 @@
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+  <script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-2c7831bb44f98c1391d6a4ffda0e1fd302503391ca806e7fcc7b9b87197aec26.js"></script>
+  <link rel="canonical" href="https://codepen.io/jonobr1/pen/qBONdKX">
+  <script>
+    window.console = window.console || function(t) {};
+  </script>
   <title>KA&DI HUB | Production Center</title>
+  <style>
+
+    section.dragndrop {
+      width: 100vw;
+      height: 90vh;
+      position: relative;
+      margin-top: 50px;
+      overflow: hidden;
+    }
+    .dragndrop {
+      touch-action: none !important; /* prevent default scrolling/zooming behavior */
+    }
+
+    section.dragndrop canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100% !important;
+      height: 100% !important;
+      display: block;
+      z-index: 1;
+    }
+  </style>
 </head>
 <body>
   <main>
@@ -178,6 +206,9 @@
         </div>
       </div>
     </section>
+
+    <section class="dragndrop" id="drop-area"><div class="title uppercase fw-700">We work with <span class="uppercase fw-700">experts in:</span></div></section>
+
     <section class="feedback" id="cases">
       <div class="title fw-700 uppercase">
         Feedback
@@ -388,5 +419,250 @@
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/typeit@8.7.1/dist/index.umd.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/two.js@v0.7.0-stable.1/build/two.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/matter-js@0.14.2/build/matter.js"></script>
+  <script id="rendered-js">
+    var vector = new Two.Vector();
+    var entities = [];
+    var mouse;
+
+    const section = document.querySelector(".dragndrop");
+    var two = new Two({
+      type: Two.Types.canvas,
+      width: section.clientWidth,
+      height: section.clientHeight,
+      autostart: true
+    }).appendTo(section);
+
+    var solver = Matter.Engine.create();
+    solver.world.gravity.y = 0.3;
+
+    var bounds = {
+      length: 5000,
+      thickness: 50,
+      properties: {
+        isStatic: true } };
+
+
+
+    // bounds.top = createBoundary(bounds.length, bounds.thickness);
+    bounds.left = createBoundary(bounds.thickness, bounds.length);
+    bounds.right = createBoundary(bounds.thickness, bounds.length);
+    bounds.bottom = createBoundary(bounds.length, bounds.thickness);
+
+    Matter.World.add(solver.world, [
+      /*bounds.top.entity,*/bounds.left.entity,
+      bounds.right.entity,
+      bounds.bottom.entity]);
+
+
+    var defaultStyles = {
+      size: two.width * 0.08,
+      weight: 400,
+      fill: "white",
+      leading: two.width * 0.08 * 0.8,
+      family: "Angus, Arial, sans-serif",
+      alignment: "center",
+      baseline: "baseline",
+      margin: {
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0 } };
+
+
+
+    function startDropAnimation() {
+      if (entities.length > 0) return; // Prevent duplicates
+
+      addSlogan();
+      resize();
+      mouse = addMouseInteraction();
+      two.bind("resize", resize).bind("update", update);
+    }
+
+    function addMouseInteraction() {
+      // add mouse control
+      var mouse = Matter.Mouse.create(section);
+      var mouseConstraint = Matter.MouseConstraint.create(solver, {
+        mouse: mouse,
+        constraint: {
+          stiffness: 0.2 } });
+
+      mouse.element.removeEventListener("mousewheel", mouse.mousewheel);
+      mouse.element.removeEventListener("DOMMouseScroll", mouse.mousewheel);
+      mouse.element.removeEventListener("touchmove", mouse.mousemove);
+
+      Matter.World.add(solver.world, mouseConstraint);
+
+      return mouseConstraint;
+    }
+
+    function resize() {
+      // Resize canvas to fit section
+      two.width = section.clientWidth;
+      two.height = section.clientHeight;
+
+      const thickness = bounds.thickness;
+
+      // Reposition boundaries
+      Matter.Body.setPosition(bounds.left.entity, { x: -thickness / 2, y: two.height / 2 });
+      Matter.Body.setPosition(bounds.right.entity, { x: two.width + thickness / 2, y: two.height / 2 });
+      Matter.Body.setPosition(bounds.bottom.entity, { x: two.width / 2, y: two.height + thickness / 2 });
+
+      // Set scale factor based on canvas width
+      let scaleFactor;
+      if (two.width < 480) {
+        scaleFactor = 0.1;
+      } else if (two.width < 768) {
+        scaleFactor = 0.2;
+      } else if (two.width < 1200) {
+        scaleFactor = 0.3;
+      } else {
+        scaleFactor = 0.5;
+      }
+
+      // Rescale each SVG and its body
+      for (const entity of entities) {
+        const group = entity.object;
+        if (!group || !group.originalSize || !entity.originalSize) continue;
+
+        const originalWidth = entity.originalSize.width;
+        const originalHeight = entity.originalSize.height;
+
+        const newWidth = originalWidth * scaleFactor;
+        const newHeight = originalHeight * scaleFactor;
+
+        // Scale SVG group visually
+        group.scale = scaleFactor;
+
+        // Scale physics body
+        const scaleX = newWidth / (entity.scale?.x || originalWidth);
+        const scaleY = newHeight / (entity.scale?.y || originalHeight);
+
+        Matter.Body.scale(entity, scaleX, scaleY);
+        entity.scale = { x: newWidth, y: newHeight };
+      }
+    }
+
+
+    function addSlogan() {
+      const total = 9; // Your 9 SVG files
+      const xStart = 100;
+      const yStart = -200;
+
+      for (let i = 1; i <= total; i++) {
+        const x = Math.random() * two.width;
+        const y = yStart;
+        const svgPath = `assets/images/dropsvgs/${i}.svg`;
+
+        two.load(svgPath, function(group) {
+          group.center();       // Center within group
+          group.noStroke();     // Remove stroke for cleaner look
+
+          // Important: Don't scale the group if you want real size
+          // Set a visual scale based on screen width
+          let svgScale = 1;
+          if (two.width < 480) {
+            svgScale = 0.4; // very small mobile
+          } else if (two.width < 768) {
+            svgScale = 0.5;
+          } else if (two.width < 1080) {
+            svgScale = 0.75;
+          } else {
+            svgScale = 1;
+          }
+
+// Scale the SVG group
+          group.scale = svgScale;
+
+// Now get the bounding box *after* scale
+          const bounds = group.getBoundingClientRect(false);
+          const width = bounds.width;
+          const height = bounds.height;
+
+
+          // Set the SVG group position
+          group.translation.set(x, y);
+
+          // Create a Matter.js body using real dimensions
+          const body = Matter.Bodies.rectangle(x, y, width, height, {
+            restitution: 0.1,
+            friction: 0.2
+          });
+
+// ✅ Add random initial rotation (5–30 degrees)
+          const angleDeg = [5, -6, 7, -8, 9][Math.floor(Math.random() * 5)];
+          const angleRad = angleDeg * (Math.PI / 180);
+          Matter.Body.rotate(body, angleRad);
+
+// ✅ Add gentle spin while falling
+          Matter.Body.setAngularVelocity(body, (Math.random() - 0.5) * 0.05);
+
+          body.originalSize = { width, height };
+          group.originalSize = { width, height };
+          body.object = group;
+          group.entity = body;
+
+          // Add to world and scene
+          entities.push(body);
+          two.add(group);
+          Matter.World.add(solver.world, body);
+        });
+      }
+    }
+
+    two.renderer.domElement.addEventListener('touchmove', function(e) {
+      e.preventDefault();
+    }, { passive: false });
+
+
+    function update(frameCount, timeDelta) {
+      var allBodies = Matter.Composite.allBodies(solver.world);
+      Matter.MouseConstraint.update(mouse, allBodies);
+      Matter.MouseConstraint._triggerEvents(mouse);
+
+      Matter.Engine.update(solver);
+
+      for (var i = 0; i < entities.length; i++) {if (window.CP.shouldStopExecution(2)) break;
+        var entity = entities[i];
+        entity.object.position.copy(entity.position);
+        entity.object.rotation = entity.angle;
+      }window.CP.exitedLoop(2);
+    }
+
+    function createBoundary(width, height) {
+      var rectangle = two.makeRectangle(0, 0, width, height);
+      rectangle.visible = false;
+
+      rectangle.entity = Matter.Bodies.rectangle(
+              0,
+              0,
+              width,
+              height,
+              bounds.properties);
+
+      rectangle.entity.position = rectangle.position;
+
+      return rectangle;
+    }
+    window.addEventListener("resize", resize);
+
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          startDropAnimation();
+          observer.unobserve(entry.target); // Stop observing once triggered
+        }
+      });
+    }, {
+      threshold: 0.7 // 20% of section must be visible
+    });
+
+    const dropSection = document.querySelector('.dragndrop');
+    observer.observe(dropSection);
+    //# sourceURL=pen.js
+  </script>
+
 </body>
 </html>

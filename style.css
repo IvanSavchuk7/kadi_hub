@@ -203,6 +203,14 @@ section.about .numbers-wrapper > .numbers-item {
     color: #D80D14;
     font-size: 3rem;
 }
+section.dragndrop .title,
+section.dragndrop .title span {
+    font-size: 3rem;
+    text-align: center;
+}
+section.dragndrop .title span {
+    color: #D80D14;
+}
 .numbers-wrapper > .numbers-item clue {
     font-size: 1.2rem;
 }
