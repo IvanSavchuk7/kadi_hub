@@ -491,7 +491,6 @@
 
       mouse.element.removeEventListener("mousewheel", mouse.mousewheel);
       mouse.element.removeEventListener("DOMMouseScroll", mouse.mousewheel);
-      mouse.element.removeEventListener("touchmove", mouse.mousemove);
 
       Matter.World.add(solver.world, mouseConstraint);
 
@@ -513,11 +512,11 @@
       // Set scale factor based on canvas width
       let scaleFactor;
       if (two.width < 480) {
-        scaleFactor = 0.8;
+        scaleFactor = 0.7;
       } else if (two.width < 768) {
-        scaleFactor = 0.9;
+        scaleFactor = 0.98;
       } else if (two.width < 1200) {
-        scaleFactor = 1;
+        scaleFactor = 0.9;
       } else {
         scaleFactor = 1;
       }
@@ -564,11 +563,11 @@
           // Set a visual scale based on screen width
           let svgScale = 1;
           if (two.width < 480) {
-            svgScale = 0.4; // very small mobile
+            svgScale = 0.6; // very small mobile
           } else if (two.width < 768) {
-            svgScale = 0.5;
+            svgScale = 0.8;
           } else if (two.width < 1080) {
-            svgScale = 0.75;
+            svgScale = 0.9;
           } else {
             svgScale = 1;
           }
