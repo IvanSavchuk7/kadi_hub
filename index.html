@@ -513,13 +513,13 @@
       // Set scale factor based on canvas width
       let scaleFactor;
       if (two.width < 480) {
-        scaleFactor = 0.1;
+        scaleFactor = 0.6;
       } else if (two.width < 768) {
-        scaleFactor = 0.2;
+        scaleFactor = 0.8;
       } else if (two.width < 1200) {
-        scaleFactor = 0.3;
+        scaleFactor = 0.9;
       } else {
-        scaleFactor = 0.5;
+        scaleFactor = 1;
       }
 
       // Rescale each SVG and its body
@@ -563,7 +563,15 @@
           // Important: Don't scale the group if you want real size
           // Set a visual scale based on screen width
           let svgScale = 1;
-
+          if (two.width < 480) {
+            svgScale = 0.4; // very small mobile
+          } else if (two.width < 768) {
+            svgScale = 0.5;
+          } else if (two.width < 1080) {
+            svgScale = 0.75;
+          } else {
+            svgScale = 1;
+          }
 
 // Scale the SVG group
           group.scale = svgScale;
