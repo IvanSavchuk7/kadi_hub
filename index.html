@@ -563,15 +563,7 @@
           // Important: Don't scale the group if you want real size
           // Set a visual scale based on screen width
           let svgScale = 1;
-          if (two.width < 480) {
-            svgScale = 0.4; // very small mobile
-          } else if (two.width < 768) {
-            svgScale = 0.5;
-          } else if (two.width < 1080) {
-            svgScale = 0.75;
-          } else {
-            svgScale = 1;
-          }
+
 
 // Scale the SVG group
           group.scale = svgScale;
