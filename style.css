@@ -24,7 +24,7 @@ html {
 section.hero {
     min-height: 95vh;
     background-image: url('assets/images/hero-bg.webp');
-    background-size: 100% 100%;
+    background-size: cover;
     background-repeat: no-repeat;
     padding: 2.7rem 3.7rem 3.7rem 2rem;
     display: flex;
