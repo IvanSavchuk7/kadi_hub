@@ -316,7 +316,7 @@ section.departments .content > .left {
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 5rem;
+    gap: 5.5rem;
 }
 section.departments .department-item {
     display: flex;
@@ -326,7 +326,7 @@ section.departments .department-item {
 section.departments .department-item > .num {
     padding-top: 1.5rem;
     font-family: Inter, sans-serif;
-    font-size: .8rem;
+    font-size: .9rem;
 }
 section.departments .department-item > div:last-child .inner {
     position: relative;
@@ -340,7 +340,7 @@ section.departments .left .department-item .abs {
     z-index: 10;
     width: 100%;
     position: absolute;
-    padding: 4rem 4rem 4rem 4rem;
+    padding: 4.5rem 4.5rem 4.5em 4.5rem;
     background: #181818;
     border-radius: 50%;
     top: -2rem;
@@ -364,7 +364,7 @@ section.departments .right {
     padding-right: 3rem;
 }
 section.departments .right .wrapper {
-    width: fit-content;
+    width: min-content;
     padding: 2.5rem 1.5rem 1rem 1.5rem;
     border-radius: 6px;
     border: 1.5px solid rgba(21, 21, 21, 0.39);
@@ -1283,9 +1283,10 @@ body.no-scroll {
         font-size: 16px;
     }
     section.hero {
+        height: 100vh;
         background-image: url("assets/images/hero-bg-mobile.webp");
         gap: 40vh;
-        background-size: 100%;
+        background-size: cover;
         padding: 4.5rem 1.9rem 1.9rem 1rem;
     }
     section.about, section.red, section.departments {
@@ -1648,7 +1649,7 @@ body.no-scroll {
         font-size: 14px;
     }
     section.hero {
-        background-size: 100% 100%;
+        background-size: cover;
         background-position: center;
     }
     section.about {
